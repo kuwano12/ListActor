@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase db;
-    Button btnGoToAddForm;
+    Button btnGoToAddForm, btnEdit, btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnGoToAddForm = (Button) findViewById(R.id.btnGoToAddForm);
+
+        btnEdit   = (Button) findViewById(R.id.btnEditActor);
+        btnDelete = (Button) findViewById(R.id.btnDeleteActor);
+
 
         db = openOrCreateDatabase("Cinema", Context.MODE_PRIVATE, null);
         db.execSQL("CREATE TABLE IF NOT EXISTS actor(name VARCHAR, age VARCHAR, country VARCHAR," +
@@ -71,7 +75,11 @@ public class MainActivity extends AppCompatActivity {
             Actor a = new Actor(c.getString(0), Integer.parseInt(c.getString(1)), c.getString(2), c.getString(3));
             list.add(a);
         }
-
         return list;
+    }
+
+    public void goToEditForm(View v) {
+        Intent i = new Intent(getApplicationContext(), EditActorForm.class);
+        startActivity(i);
     }
 }
