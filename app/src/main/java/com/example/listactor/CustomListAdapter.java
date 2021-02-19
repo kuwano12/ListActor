@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class CustomListAdapter extends BaseAdapter {
             holder.ageView = (TextView) convertView.findViewById(R.id.textViewAge);
             holder.countryView = (TextView) convertView.findViewById(R.id.textCountry);
             convertView.setTag(holder);
+
         } else {
             holder = (ViewHolder) convertView.getTag();
         }

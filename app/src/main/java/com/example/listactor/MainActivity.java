@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnGoToAddForm = (Button) findViewById(R.id.btnGoToAddForm);
 
-        btnEdit   = (Button) findViewById(R.id.btnEditActor);
-        btnDelete = (Button) findViewById(R.id.btnDeleteActor);
+//        btnEdit   = (Button) findViewById(R.id.btnEditActor);
+//        btnDelete = (Button) findViewById(R.id.btnDeleteActor);
 
 
         db = openOrCreateDatabase("Cinema", Context.MODE_PRIVATE, null);
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Actor> image_details = getListData();
         final ListView listView = (ListView) findViewById(R.id.listView);
+
         listView.setAdapter(new CustomListAdapter(this, image_details));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
                 Actor a = (Actor) o;
-                Toast.makeText(MainActivity.this, "Selected :" + " " + a, Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(getApplicationContext(), EditActorForm.class);
+                Bundle extra = new Bundle();
+                extra.putSerializable("Actor", a);
+                i.putExtra("extra", extra);
+                startActivity(i);
+
+//                Toast.makeText(MainActivity.this, "Selected :" + " " + a, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -58,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         List<Actor> list = new ArrayList<Actor>();
         Actor tom = new Actor("Tom", 58, "USA", "tom");
         Actor brad = new Actor("Brad", 57, "USA", "brad");
-        Actor dicaprio = new Actor("Tom", 46, "USA", "dicaprio");
-        Actor angelina = new Actor("Tom", 45, "USA", "angelina");
+        Actor dicaprio = new Actor("Leonardo", 46, "USA", "dicaprio");
+        Actor angelina = new Actor("Angelina", 45, "USA", "angelina");
 
         list.add(tom);
         list.add(brad);

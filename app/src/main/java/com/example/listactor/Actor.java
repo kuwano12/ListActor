@@ -1,6 +1,8 @@
 package com.example.listactor;
 
-public class Actor {
+import java.io.Serializable;
+
+public class Actor implements Serializable {
     private String name;
     private int age;
     private String country;
